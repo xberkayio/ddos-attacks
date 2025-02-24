@@ -23,7 +23,7 @@ This script allows you to perform a basic DDoS (Distributed Denial of Service) a
 git clone https://github.com/xberkay-o/ddos-attacks
 ```
 ```bash
-cd ddos-attacks/ddos-js
+cd ddos-attacks/ddos-nodejs
 ```
 ```bash
 node ddos.js
