@@ -21,8 +21,6 @@ This script allows you to perform a basic DDoS (Distributed Denial of Service) a
 Also click to use in replit
 <p align="left"><a href="https://replit.com/"><img src="https://skillicons.dev/icons?i=replit"></a></p>
 
-![Kali]()
-
 
 ## Disclaimer
 
