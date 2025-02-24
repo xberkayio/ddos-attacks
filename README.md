@@ -1,6 +1,6 @@
 # DDoS Script
 
-**Use responsibly and only on systems you own or have express permission to test. Unauthorized use is illegal.**
+**Use responsibly and only on systems you own or have explicit permission to test. Unauthorized use is illegal.**
 
 ## Introduction
 
