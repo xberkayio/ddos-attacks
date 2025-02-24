@@ -17,7 +17,10 @@ function clearConsole() {
 
 clearConsole()
 const asciiArt = `
-         \x1b[32mcoding \x1b[31mby \x1b[32mberkay
+     |     |            
+  _` |  _` |  _ \   __| 
+ (   | (   | (   |\__ \ 
+\__,_|\__,_|\___/ ____/ 
 `;
 
 console.log(asciiArt);
