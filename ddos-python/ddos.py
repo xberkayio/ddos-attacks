@@ -4,7 +4,10 @@ import os
 import time
 
 auth = """
-         \x1b[32mcoding \x1b[31mby \x1b[32mberkay                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+     |     |            
+  _` |  _` |  _ \   __| 
+ (   | (   | (   |\__ \ 
+\__,_|\__,_|\___/ ____/                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
 """
 
 async def bypass_cloudflare(target_url):
