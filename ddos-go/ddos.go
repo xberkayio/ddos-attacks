@@ -12,7 +12,10 @@ import (
 )
 
 var auth = `
-         coding by berkay          
+     |     |            
+  _` |  _` |  _ \   __| 
+ (   | (   | (   |\__ \ 
+\__,_|\__,_|\___/ ____/         
 `
 
 func bypassCloudflare(targetURL string) error {
