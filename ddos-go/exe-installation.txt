@@ -1,0 +1,5 @@
+go mod init ddos.go
+
+go mod tidy
+
+go build -ldflags "-s -w" -o ddos.exe ddos.go
