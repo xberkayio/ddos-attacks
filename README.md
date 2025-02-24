@@ -1,6 +1,6 @@
-# Node.js DDoS Script
+# DDoS Script
 
-**Sorumlu bir şekilde ve yalnızca sahip olduğunuz veya test etmek için açık izninizin olduğu sistemlerde kullanın. Yetkisiz kullanım yasadışıdır.**
+**Use responsibly and only on systems you own or have express permission to test. Unauthorized use is illegal.**
 
 ## Introduction
 
