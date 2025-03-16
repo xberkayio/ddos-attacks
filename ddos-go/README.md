@@ -17,7 +17,7 @@ This is a simple DDoS (Distributed Denial of Service) tool coded in Go, designed
 
 1. **Clone the Repository:**
     ```bash
-    git clone https://github.com/xberkayio/ddos-attacks/ddos-go
+    git clone https://github.com/xberkayio/ddos-attacks/
     cd ddos-attacks/ddos-go
     go run ddos.go
     ```
