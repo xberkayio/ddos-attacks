@@ -19,7 +19,7 @@ This Python script is designed to perform a Distributed Denial of Service (DDoS)
 ## How to Install Dependencies
 
 ```bash
-git clone https://github.com/xberkay-o/ddos-attacks/ddos-python
+git clone https://github.com/xberkayio/ddos-attacks/
 cd ddos-attacks/ddos-python
 ```
 ```bash
