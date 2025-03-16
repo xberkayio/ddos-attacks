@@ -20,7 +20,7 @@ This script allows you to perform a basic DDoS (Distributed Denial of Service) a
 ## Usage
 
 ```bash
-git clone https://github.com/xberkay-o/ddos-attacks
+git clone https://github.com/xberkayio/ddos-attacks
 ```
 ```bash
 cd ddos-attacks/ddos-js
